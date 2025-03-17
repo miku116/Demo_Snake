@@ -10,7 +10,7 @@ public class Snake : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log(transform.position);
+        //Debug.Log(transform.position);
 
         Time.timeScale = speed; //0.3±¶ËÙ
 
@@ -22,22 +22,22 @@ public class Snake : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.W))
         {
-            Debug.Log("W");
+            //Debug.Log("W");
             direction = Vector3.up;
         }
         if (Input.GetKeyDown(KeyCode.S))
         {
-            Debug.Log("S");
+            //Debug.Log("S");
             direction = Vector3.down;
         }
         if (Input.GetKeyDown(KeyCode.A))
         {
-            Debug.Log("A");
+            //Debug.Log("A");
             direction = Vector3.left;
         }
         if (Input.GetKeyDown(KeyCode.D))
         {
-            Debug.Log("D");
+            //Debug.Log("D");
             direction = Vector3.right;
         }
     }
