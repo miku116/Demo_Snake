@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Snake : MonoBehaviour
 {
+    public GameUI gameUI; //获取游戏UI
     Vector3 direction;
     public float speed;
     //蛇身节点预制体
@@ -76,6 +77,7 @@ public class Snake : MonoBehaviour
             //Instantiate(bodyPrefab);
             bodies.Add(Instantiate(bodyPrefab, transform.position, 
                                    Quaternion.identity));
+            gameUI.AddScore();
         }
         //当角色与墙壁发生碰撞时触发
         if (collision.CompareTag("Obstacle"))
@@ -100,5 +102,7 @@ public class Snake : MonoBehaviour
         bodies.Clear();
         //再次存储添加蛇头
         bodies.Add(transform);
+
+        gameUI.ResetScore();
     }
 }
