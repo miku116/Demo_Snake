@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Snake : MonoBehaviour
 {
+    public GameAudio gameAudio; //获取游戏音乐
     public GameUI gameUI; //获取游戏UI
     Vector3 direction;
     public float speed;
@@ -66,7 +67,7 @@ public class Snake : MonoBehaviour
             bodies[i].position = bodies[i-1].position;
         }
 
-        transform.Translate(direction);
+        transform.Translate(direction);  //将蛇头移到视图中
     }
 
     //碰撞检测，当角色与其他物体（tag为"Food"的物体）发生碰撞时触发
@@ -78,12 +79,15 @@ public class Snake : MonoBehaviour
             bodies.Add(Instantiate(bodyPrefab, transform.position, 
                                    Quaternion.identity));
             gameUI.AddScore();
+            gameAudio.PlayEatAudio();
+            SpeedUp();
         }
         //当角色与墙壁发生碰撞时触发
         if (collision.CompareTag("Obstacle"))
         {
             //Debug.Log("Game Over");
             Resetstage();
+            gameAudio.ResetBackgroundMusic();
         }
         
     }
@@ -104,5 +108,15 @@ public class Snake : MonoBehaviour
         bodies.Add(transform);
 
         gameUI.ResetScore();
+
+        speed = 0.1f;
+        Time.timeScale = speed;
+    }
+
+    //吃到食物加速
+    void SpeedUp()
+    {
+        speed += 0.005f;
+        Time.timeScale = speed;
     }
 }
